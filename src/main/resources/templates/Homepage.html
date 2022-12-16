@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+    <!--    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link  rel="stylesheet" href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' >
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../static/js/main.js" th:src="@{/js/main.js}"></script>
+    <meta charset="UTF-8">
+    <title>Spring Tutorial</title>
+</head>
+<body>
+<!--    <div id="root">-->
+<div class="mainContainer">
+    <div class="left-content">
+        <div style="width: 100%; height: 100%; display:flex;">
+            <nav>
+                <ul>
+                    <li class="logo"><img src="https://i.imgur.com/E26Pj54.png" alt="Logo"></li>
+                    <li> <a th:href="@{home}"><i class='bx bx-home-alt-2 sidebar-icons'></i> Home</a></li>
+                    <li><a th:href="@{list}"><i class='bx bxs-map'></i> Subscribers</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <div class="right-content">
+        <div class="content-body">
+            <div class="Container">
+                <h2>Mobile Subscribers</h2>
+                <div class="Grid__Container">
+                    <div class="Stat__Card main-card-container">
+                        <div class="card-container-1">
+                            <a th:href="@{list}" class="text-underline">
+                                <i class="fa card-icon fa-mobile" aria-hidden="true"></i>
+                                <p1>Subscribers</p1>
+                            </a>
+                        </div>
+                        <div class="card-container-2">
+                            <span th:text="${countMobiles}" class="numbers"></span>
+                        </div>
+                    </div>
+
+                    <div class="Stat__Card main-card-container">
+                        <div class="card-container-1">
+                            <a th:href="@{list}" class="text-underline">
+                                <i class="fa card-icon fa-users"></i><p1>Prepaid</p1>
+                            </a>
+                        </div>
+                        <div class="card-container-2">
+                            <span th:text="${countPrepaid}" class="numbers"></span>
+                        </div>
+                    </div>
+
+                    <div class="Stat__Card main-card-container">
+                        <div class="card-container-1">
+                            <a th:href="@{list}" class="text-underline">
+                                <i class="fa card-icon fa-users"></i><p1>Postpaid</p1>
+                            </a>
+                        </div>
+                        <div class="card-container-2">
+                            <span th:text="${countPostpaid}" class="numbers"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+        <div class="image">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="50%" height="50%" viewBox="0 0 256 256" xml:space="preserve">
+
+<defs>
+</defs>
+                <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: hsl(345, 57%, 27%); fill-rule: evenodd; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)" >
+	<path d="M 11.615 39.383 H 5.098 C 2.283 39.383 0 41.665 0 44.481 v 22.275 c 0 2.816 2.283 5.098 5.098 5.098 h 6.517 c 2.816 0 5.098 -2.283 5.098 -5.098 V 44.481 C 16.713 41.665 14.431 39.383 11.615 39.383 z M 10.614 41.629 c 0.247 0 0.447 0.201 0.447 0.448 c 0 0.247 -0.201 0.447 -0.447 0.447 c -0.247 0 -0.448 -0.201 -0.448 -0.447 C 10.166 41.83 10.367 41.629 10.614 41.629 z M 5.848 41.685 h 3.416 c 0.217 0 0.393 0.176 0.393 0.393 S 9.48 42.47 9.264 42.47 H 5.848 c -0.217 0 -0.393 -0.176 -0.393 -0.393 S 5.631 41.685 5.848 41.685 z M 13.713 66.756 c 0 1.157 -0.941 2.098 -2.098 2.098 H 5.098 C 3.941 68.854 3 67.913 3 66.756 V 44.481 c 0 -0.803 0.458 -1.493 1.122 -1.846 c 0.219 0.648 0.71 1.104 1.279 1.104 h 5.911 c 0.569 0 1.06 -0.456 1.279 -1.104 c 0.664 0.353 1.122 1.043 1.122 1.846 V 66.756 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: hsl(345, 57%, 27%); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                    <path d="M 84.961 34.286 H 66.726 c -2.771 0 -5.039 2.268 -5.039 5.039 v 28.276 c 0 2.771 2.268 5.039 5.039 5.039 h 18.235 c 2.771 0 5.039 -2.268 5.039 -5.039 V 39.325 C 90 36.553 87.732 34.286 84.961 34.286 z M 75.843 71.207 c -0.651 0 -1.178 -0.528 -1.178 -1.179 c 0 -0.651 0.528 -1.178 1.178 -1.178 c 0.651 0 1.178 0.528 1.178 1.178 C 77.022 70.68 76.494 71.207 75.843 71.207 z M 87 67.281 H 64.687 V 39.325 c 0 -1.105 0.934 -2.039 2.039 -2.039 h 18.235 c 1.105 0 2.039 0.934 2.039 2.039 V 67.281 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: hsl(345, 57%, 27%); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                    <path d="M 50.139 65.019 h 7.548 v -9.401 H 20.713 v 9.401 h 12.873 c -0.482 2.278 -1.45 4.555 -2.907 6.833 c -0.301 0.47 0.039 1.088 0.597 1.088 h 4.001 h 2.279 h 4.001 h 0.611 h 4.001 h 2.279 h 4.001 c 0.558 0 0.898 -0.617 0.597 -1.088 C 51.589 69.574 50.621 67.297 50.139 65.019 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: hsl(345, 57%, 27%); fill-rule: evenodd; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                    <path d="M 74.188 30.286 h 3 V 22.04 c 0 -1.525 -1.237 -2.762 -2.762 -2.762 H 9.299 c -1.525 0 -2.762 1.237 -2.762 2.762 v 13.342 h 3 V 22.278 h 64.651 V 30.286 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: hsl(345, 57%, 27%); fill-rule: evenodd; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+</g>
+</svg>
+        </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

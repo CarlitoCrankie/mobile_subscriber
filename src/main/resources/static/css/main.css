@@ -1,0 +1,380 @@
+/*--------------------Body Design-----------------------*/
+body{
+    height: 100%;
+    width: 100%;
+    background-color: hsl(221, 15%, 25%);
+}
+
+.mainContainer{
+    display: flex;
+    background-color: green;
+    min-width: 100%;
+    min-height: 200%;
+}
+
+.left-content{
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    height: 200%;
+}
+
+.right-content{
+    background-color: hsl(209, 61%, 10%);
+    width:80%;
+    height: 200%;
+}
+
+/*---------------------------------------------------------*/
+
+
+/*---------------------SideBar Design----------------------*/
+.logo{
+    padding: 20px;
+}
+
+nav ul{
+    margin: 0;
+    padding: 0;
+    height: 200%;
+    width: 20%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color:hsl(210, 100%, 12%);
+}
+
+nav ul li{
+    list-style: none;
+}
+
+nav ul li a {
+    display: block;
+    position: relative;
+    font-family: 'Segoe UI', 'serif';
+    text-decoration: none;
+    /*text-transform: uppercase;*/
+    font-size: 17px;
+    color: whitesmoke;
+    padding: 15px 0 15px 25px;
+    transition: 0.5s;
+}
+
+nav ul li a:hover{
+    background-color:  hsl(240, 5%, 15%);
+}
+
+nav ul li a:hover:before{
+    width:95%;
+}
+
+.sidebar-icons{
+    color: #ffff;
+}
+
+/*---------------------------------------------------------*/
+
+
+/*---------------------Statistics Card--------------------*/
+.Grid__Container{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap:10px;
+    margin-left: 8.5rem;
+}
+
+.Stat__Card > a, .main-card-container{
+    padding: 1.2rem;
+    background-color: hsl(245, 8%, 28%);
+    /* Subtle box-shadow that defines the shape of the card */
+    box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.15);
+    border-radius: 0.4rem;
+    font-family: 'Segoe UI', 'serif';
+    font-weight: normal;
+    display: flex;
+    gap: 0.8rem;
+    /*justify-content: center;*/
+    align-items: center;
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+
+a:hover{
+    color: hsl(210, 100%, 52%) !important;
+}
+
+@media (min-width: 768px) {
+    .Grid__Container {
+        /* Switch to 3 columns on larger screens */
+        grid-template-columns: repeat(3, 20rem);
+    }
+}
+
+.card-icon{
+    color: hsl(43, 86%, 60%);
+    font-size: 25px !important;
+}
+
+.main-card-container{
+    display: flex;
+    flex-flow: row;
+    justify-content: space-evenly;
+}
+
+.card-container-1{
+    display: flex;
+    flex-flow: row;
+    width: 70%;
+}
+
+.card-container-2{
+    /*padding: 1.5rem*/
+    font-size: 1rem;
+    width: 20%;
+    text-overflow: ellipsis;
+}
+
+/*---------------------------------------------------------*/
+
+
+/*-----------------------Table Design-----------------------*/
+.py-5{
+    padding: 3rem !important;
+    margin-top: 20px;
+}
+
+.tableData{
+    min-width: 60%;
+    background-color: hsl(210, 100%, 12%);
+    justify-content: center !important;
+    box-shadow:0 0 20px hsl(180, 13.3%, 5.9%);
+    padding: 8px;
+
+}
+.styled-table{
+    border-collapse: separate;
+    border-spacing: 0 3px;
+    font-size: 0.9rem;
+    font-family: 'Segoe UI', 'serif';
+    min-width: 95%;
+    box-shadow: 0 0 20px hsl(209, 61%, 10%);
+    margin: 10px 30px;
+    /*padding: 8px;*/
+}
+
+.styled-table thead tr{
+    background-color: hsl(210, 100%, 12%);
+    color: hsl(245, 8%, 28%);
+    text-align: justify;
+
+}
+
+.styled-table th,
+.styled-table td{
+    padding: 12px 15px;
+    color: #ffffff !important;
+    text-decoration: none;
+}
+
+.styled-table tbody tr{
+    border-bottom: hsl(245, 8%, 28%);
+}
+
+.styled-table tbody tr {
+    background-color: hsl(209, 61%, 10%);
+}
+
+.fk-s{
+    color: #fdfdfd;
+    font-weight:bold;
+    text-align: center;
+    font-size: 10px;
+}
+
+/*---------------------------------------------------------*/
+
+/*-------------------Pagination----------------------------*/
+.myRow{
+    display: flex;
+    width: 135%;
+    margin: 30px 30px;
+
+}
+.rowL{
+    flex:0 0 auto ;
+    width: 41.66667%
+}
+
+@media(min-width: 768px) {
+    .rowR {
+        flex: 0 0 auto;
+        width: 58.33333%
+    }
+}
+
+
+ul.pagination{
+    white-space: nowrap;
+    margin: 2px 0 2px 12.5rem;
+}
+
+.paginationU{
+    display: inline-block;
+    padding: 8px 16px;
+    margin-left: 5rem;
+    background-color: #ffffff;
+    color: black;
+}
+
+.btn-pagination{
+    color:
+}
+
+/*---------------------------------------------------------*/
+
+
+/*-------------------------Search/Filt -----------------*/
+.topRow{
+    margin: 20px 30px;
+    width: 95%;
+
+}
+
+.search{
+    padding-top: 50px;
+    margin-left: auto;
+}
+
+@media(width: 768px) {
+    .search {
+        postion:relative;
+    }
+}
+
+.Filter{
+    width: 30%;
+}
+
+.filter-dropdown{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left:5px;
+    width: 90px;
+}
+
+
+#search-input{
+    border-radius: 50px;
+
+}
+
+#search-clear {
+    text-decoration:none;
+    position: relative;
+    right: 30px;
+}
+
+#search, #search-clear:hover{
+    color: #8f8f8f;
+}
+
+.fa-search::before{
+    content: "\f002";
+}
+
+.search-icon{
+    color: hsl(43, 86%, 60%);
+    position: relative;
+    left: 27px;
+}
+
+.numbers{
+    font-size: 2rem;
+    color: #ffffff;
+}
+/*---------------------------------------------------------*/
+
+/*----------------------Other designs-----------------------*/
+
+p{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+}
+
+p1{
+    margin-left: 15px;
+    font-size: 25px;
+    color: #ffffff;
+    text-decoration: none;
+}
+td{
+    color: #ffffff;
+}
+
+/*th{*/
+/*    color: #ffffff;*/
+/*}*/
+
+.image{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+a:hover{
+    color: hsl(210, 100%, 52%) !important;
+}
+
+h1{
+    font-family: 'Segoe UI', 'serif';
+    font-weight: bold;
+    color: #ffffff;
+    font-size: 2rem !important;
+    margin-left: 42px;
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
+
+h2{
+    font-family: 'Segoe UI', 'serif';
+    font-weight: bold;
+    color:#ffffff;
+    padding: 30px;
+    font-size: 3rem !important;
+}
+
+.addRow{
+    padding-bottom: 20px;
+    float: right;
+    margin-right: 42px;
+}
+
+.text-underline{
+    text-decoration: none;
+}
+
+.table-icons{
+    background: unset;
+    border: unset;
+    font-size: 20px;
+}
+
+
+.bxs-edit-alt{
+    color: #ffffff;
+}
+
+.bxs-trash-alt{
+    color: #ffffff;
+}
+
+/*.fa-pen-to-square{*/
+/*    color: green;*/
+/*}*/
+
+/*.fa-trash-can{*/
+/*    color: red;*/
+/*}*/
+/*----------------------------------------------------------*/
+

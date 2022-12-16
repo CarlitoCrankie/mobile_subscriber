@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link  rel="stylesheet" href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' >
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../static/js/main.js" th:src="@{/js/main.js}"></script>
+
+    <meta charset="UTF-8" />
+    <title>Mobile Subscribers</title>
+</head>
+<body>
+
+<div class="mainContainer">
+    <div class="left-content">
+        <div style="width: 100%; height: 100%; display:flex;">
+            <nav>
+                <ul>
+                    <li class="logo"><img src="https://i.imgur.com/E26Pj54.png" alt="Logo"></li>
+                    <li> <a th:href="@{/home}"><i class='bx bx-home-alt-2 sidebar-icons'></i> Home</a></li>
+                    <li><a th:href="@{/list}"><i class='bx bxs-map'></i> Subscribers</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <div class="right-content">
+        <div class="content-body">
+            <div class="Container">
+                <h1>MOBILE SUBSCRIBERS</h1>
+
+
+                <div class="addRow">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal" >
+                        New Mobile
+                    </button>
+                </div>
+                <br>
+                <div class="container py-5 ps-5">
+                    <div class="tableData">
+                        <div class="topRow d-flex ">
+                            <div class="Filter">
+                                <p>Show Entries </p>
+                                <div class="filter-dropdown">
+                                    <select name="pageSize" aria-controls="example" class="form-select form-select-sm" id="pageSizeSelect" th:data-href="@{'/page/1?sortField=' +${sortField} + '&sortDir=' +${sortDir} + '&keyword=' +${keyword}}">
+                                        <option value="5" th:selected="${pageSize==5}">5</option>
+                                        <option value="10" th:selected="${pageSize==10}">10</option>
+                                        <option value="25" th:selected="${pageSize==25}">25</option>
+                                        <option value="50" th:selected="${pageSize==50}">50</option>
+                                        <option value="100" th:selected="${pageSize==100}">100</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="search">
+                                <form th:action="@{/page/1}">
+                                <label for="search-input">
+                                    <i class="fa search-icon fa-search" aria-hidden="true" type="submit" value="search">
+                                    </i>
+                                    <input type="search" class="px-4" name="keyword" placeholder="Enter search" th:value="${keyword}" value="0"  id="search-input" required />&nbsp;
+                                </label>
+                                <a id="search-clear" type="reset" class="fa fa-times-circle" th:href="@{/list}" aria-hidden="true">
+                                </a>
+                                </form>
+                            </div>
+                        </div>
+
+                        <form th:action="@{/deleteMobile/}" method="get" id="delete-form">
+                        <table class="styled-table table-responsive-sm">
+                            <thead>
+                            <tr>
+                                <th><a th:href="@{'/page/' + ${currentPage} + '?sortField=Idr&sortDir=' + ${reverseSortDir} +'&keyword=' + ${keyword}+ '&pageSize=' + ${pageSize}}" class="text-underline fk-s">ID</a></th>
+                                <th><a th:href="@{'/page/' + ${currentPage} + '?sortField=customerIdOwner&sortDir=' + ${reverseSortDir} +'&keyword=' + ${keyword}+ '&pageSize=' + ${pageSize}}" class="text-underline fk-s">ID OWNER</a></th>
+                                <th><a th:href="@{'/page/' + ${currentPage} + '?sortField=customerIdUser&sortDir=' + ${reverseSortDir} +'&keyword=' + ${keyword}+ '&pageSize=' + ${pageSize}}" class="text-underline fk-s">ID USER</a></th>
+                                <th><a th:href="@{'/page/' + ${currentPage} + '?sortField=msisdn&sortDir=' + ${reverseSortDir} +'&keyword=' + ${keyword}+ '&pageSize=' + ${pageSize}}" class="text-underline fk-s">MSISDN</a></th>
+                                <th><a th:href="@{'/page/' + ${currentPage} + '?sortField=serviceStartDate&sortDir=' + ${reverseSortDir}+'&keyword=' + ${keyword}+ '&pageSize=' + ${pageSize}}" class="text-underline fk-s">SERVICE START DATE</a></th>
+                                <th><a th:href="@{'/page/' + ${currentPage} + '?sortField=serviceType&sortDir=' + ${reverseSortDir}+'&keyword=' + ${keyword}+ '&pageSize=' + ${pageSize}}" class="text-underline fk-s">SERVICE TYPE</a></th>
+                                <th class="text-underline fk-s">OPERATION</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="mobile: ${mobileList}">
+                                <td th:text="${mobile.id}"></td>
+                                <td th:text="${mobile.customerIdOwner}">CUSTOMER ID OWNER</td>
+                                <td th:text="${mobile.customerIdUser}">CUSTOMER ID USER</td>
+                                <td th:text="${mobile.msisdn}">MSISDN</td>
+                                <td th:text="${mobile.serviceStartDate}">SERVICE START DATE</td>
+                                <td th:text="${mobile.serviceType}">SERVICE TYPE</td>
+                                <td> <button  data-bs-toggle="modal" data-bs-target="#editModal" id="editButton" class="table-icons"><i class='bx bxs-edit-alt'></i></button>
+                                    <button type="button" th:data-href="${mobile.id}" class="table-icons delete_btn "><i class='bx deleteButton bxs-trash-alt'></i></button>
+                                </td>
+                            </tr>
+
+
+
+                            </tbody>
+                        </table>
+                        </form>
+
+
+                        <div class="myRow">
+                            <div class="rowL">
+                                <p>
+                                    Showing number of entries: [[${totalItems}]]
+                                </p>
+
+                            </div>
+
+                            <div class="rowR">
+                                <div th:if="${totalPages > 0}" class="container mt-3" align="right">
+                                </div>
+                                <ul class="pagination">
+
+                                    <li>
+                                        <a th:if="${currentPage != 1}" th:href="@{'/page/' + ${currentPage - 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}+ '&size='+ ${pageSize} + '&keyword=' + ${keyword} + '&pageSize=' +${pageSize}}" class="btn btn-primary btn-pagination btn-sm mb-3"><i class="fa fa-backward" aria-hidden="true"></i>
+                                        </a>
+                                        <span th:unless="${currentPage < totalPages}"></span>
+                                    </li>
+
+                                    <li>
+                        <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+                                <a th:if="${currentPage != i}" th:href="@{'/page/' + ${i}+ '?sortField=' +${sortField} + '&sortDir=' + ${sortDir}+'&size='+ ${pageSize} + '&keyword=' + ${keyword} + '&pageSize='+${pageSize}}" class="btn btn-primary btn-pagination btn-sm mb-3">[[${i}]]</a>
+                                <span th:unless="${currentPage != i}" class="btn btn-primary btn-sm mb-3">[[${i}]]</span>
+                            </span>
+                                    </li>
+
+                                    <li>
+                                        <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}+'&size='+ ${pageSize} + '&keyword=' + ${keyword} + '&pageSize='+${pageSize}}" class="btn btn-primary btn-pagination btn-sm mb-3"><i class="fa fa-forward" aria-hidden="true"></i>
+
+                                        </a>
+                                        <span th:unless="${currentPage > totalPages}"></span>
+                                    </li>
+
+                                </ul>
+
+                            </div>
+                        </div >
+                        <div class="rowL">
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabeld" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabeld">New Mobile</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+
+
+                                <div class="form-group">
+                                    <label for="customer_id_owner" class="col-form-label">CUSTOMER ID OWNER</label>
+                                    <input type="text" class="form-control" id="customer_id_owner" placeholder="IdOwner" name="customerIdOwner">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="customer_id_user" class="col-form-label">CUSTOMER ID USER:</label>
+                                    <input type="text" class="form-control" id="customer_id_user" placeholder="IdUser" name="customerIdUser">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="msisdn" class="col-form-label">MSISDN:</label>
+                                    <input type="text" class="form-control" id="msisdn" placeholder="Mobile Number" name="msisdn">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="service_start_date" class="col-form-label">SERVICE START DATE:</label>
+                                    <input type="text" class="form-control" id="service_start_date" placeholder="Date" name="serviceStartDate">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="service_type" class="col-form-label">SERVICE TYPE</label>
+                                    <select name="serviceType" id="service_type" class="form-control">
+                                        <option value="MOBILE_PREPAID">MOBILE PREPAID</option>
+                                        <option value="MOBILE_POSTPAID">MOBILE POSTPAID</option>
+                                    </select>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="closeAddModal" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="Submit" class="btn btn-primary">Save </button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Mobile</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form >
+                                <div class="form-group d-none">
+                                    <label for="idEdit" class="col-form-label">ID:</label>
+                                    <input type="text" class="form-control" id="idEdit" name="id">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="customer_id_ownerEdit" class="col-form-label">CUSTOMER ID OWNER:</label>
+                                    <input type="text" class="form-control" id="customer_id_ownerEdit" placeholder="IdOwner" name="customerIdOwner">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="customer_id_userEdit" class="col-form-label">CUSTOMER ID USER:</label>
+                                    <input type="text" class="form-control" id="customer_id_userEdit" placeholder="IdUser" name="customerIdUser">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="msisdnEdit" class="col-form-label">MSISDN:</label>
+                                    <input type="text" class="form-control" id="msisdnEdit" placeholder="Mobile Number" name="msisdn">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="service_start_dateEdit" class="col-form-label">SERVICE START DATE:</label>
+                                    <input type="text" class="form-control" id="service_start_dateEdit"  placeholder="Date" name="serviceStartDate">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="service_typeEdit" class="col-form-label">SERVICE TYPE</label>
+                                    <select name="serviceType" id="service_typeEdit" class="form-control">
+                                        <option value="MOBILE_PREPAID">MOBILE PREPAID</option>
+                                        <option value="MOBILE_POSTPAID">MOBILE POSTPAID</option>
+                                    </select>
+                                </div>
+
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="closeEditModal"  type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button id="saveButton" class="btn btn-primary">Save </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+
+
+<script th:inline="javaScript">
+    $(document).ready(()=>{
+        changePageAndSize();
+
+        $(".delete_btn").click(function(e){
+            myFunction(e);
+        })
+    });
+
+    changePageAndSize = () => {
+        $('#pageSizeSelect').change(evt => {
+            let sizeStr = `&pageSize=${evt.target.value}`;
+            let ele = document.querySelector("#pageSizeSelect");
+            console.log(ele);
+            window.location.href = ele.getAttribute("data-href") + sizeStr;
+        });
+    };
+
+    function myFunction(e){
+
+        var txt;
+        if (confirm("Are you sure you want to delete ? ")==true){
+            txt = "You are deleting the subscriber information!";
+            let del = document.querySelector("#delete-form");
+
+            let impl = $(e.target).attr('data-href');
+            let new_action = del.getAttribute("action") + impl;
+            del.setAttribute('action', new_action);
+            $("#delete-form").submit();
+        } else{
+            txt = "You pressed Cancel!"
+        }
+        console.log(txt);
+    }
+</script>
+
+</body>
+</html>
